@@ -69462,7 +69462,7 @@
 	  }
 	  React.useEffect(() => {
 	    const script = document.createElement('script');
-	    script.src = '//g.alicdn.com/chatui/icons/2.6.2/index.js';
+	    script.src = 'http://g.alicdn.com/chatui/icons/2.6.2/index.js';
 	    script.async = true;
 	    document.head.appendChild(script);
 	    return () => {
