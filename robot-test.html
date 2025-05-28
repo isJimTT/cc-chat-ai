@@ -1,0 +1,14 @@
+<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/isJimTT/cc-chat-ai@v1.1.4/dist/chat-robot.umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/isJimTT/cc-chat-ai@v1.1.4/dist/chat-robot.umd.css" />
+
+<div id="reactApp"></div>
+<script>
+  window.ReactDOM.render(
+    window.React.createElement(window.ChatRobot, {
+      ROBOT_FETCH_URL: 'http://192.168.0.142:8555/api/chat/stream'
+    }),
+    document.getElementById("reactApp")
+  );
+</script>
