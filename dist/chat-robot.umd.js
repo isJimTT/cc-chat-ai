@@ -69521,7 +69521,7 @@
 	  React.useEffect(() => {
 	    setSessionId(v4());
 	    const script = document.createElement('script');
-	    script.src = 'http//g.alicdn.com/chatui/icons/2.6.2/index.js';
+	    script.src = 'https://g.alicdn.com/chatui/icons/2.6.2/index.js';
 	    script.async = true;
 	    document.head.appendChild(script);
 	    return () => {
