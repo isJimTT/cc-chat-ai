@@ -69375,6 +69375,8 @@
 	  function renderMessageContent(msg) {
 	    const lastMsg = messages[messages.length - 1];
 	    const isLastTyping = msg._id === lastMsg?._id && isTyping;
+
+	    // 1、快速回复render
 	    if (msg?.mark === 'quick-service') {
 	      return isLastTyping ? /*#__PURE__*/React.createElement(distExports.Typing, null) : /*#__PURE__*/React.createElement(distExports.Card, {
 	        fluid: true
@@ -69426,14 +69428,20 @@
 	        connectionList: SUPPORT_CONNECTION_LIST_MAP$1
 	      }))));
 	    }
+
+	    // 2、招呼语 render
 	    if (msg?.class === 'greeting') {
 	      return /*#__PURE__*/React.createElement(distExports.TypingBubble, {
 	        content: msg?.content?.text
 	      });
 	    }
+
+	    // 3、Typing render
 	    if (msg?.content?.text === '...') {
 	      return /*#__PURE__*/React.createElement(distExports.Typing, null);
 	    }
+
+	    // 4、流式MD render + thinking render
 	    const text = msg.content.text || '';
 	    const {
 	      thinkContent,
@@ -69449,7 +69457,7 @@
 	  React.useEffect(() => {
 	    setSessionId(uuid.v4());
 	    const script = document.createElement('script');
-	    script.src = '//g.alicdn.com/chatui/icons/2.6.2/index.js';
+	    script.src = 'http//g.alicdn.com/chatui/icons/2.6.2/index.js';
 	    script.async = true;
 	    document.head.appendChild(script);
 	    return () => {
