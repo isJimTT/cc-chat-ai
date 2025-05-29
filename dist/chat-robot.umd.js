@@ -71293,7 +71293,7 @@
 	      thinkContent,
 	      restContent,
 	      inThink
-	    } = reactExports.useMemo(() => parseThinkContent(text), [text]);
+	    } = parseThinkContent(text);
 	    return /*#__PURE__*/React.createElement(distExports.Bubble, null, msg?.position === 'left' && text.indexOf('<think>') !== -1 && /*#__PURE__*/React.createElement(distExports.Think, null, thinkContent), /*#__PURE__*/React.createElement("div", {
 	      dangerouslySetInnerHTML: {
 	        __html: md.render(restContent)
