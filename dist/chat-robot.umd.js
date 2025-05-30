@@ -69354,10 +69354,12 @@
 	      const reader = res.body.getReader();
 	      const decoder = new TextDecoder('utf-8');
 	      let fullText = '';
-	      let buffer = '';
+	      let textBuffer = '';
+	      let contentBuffer = '';
 	      const flushBuffer = () => {
-	        fullText += buffer;
-	        buffer = '';
+	        if (!contentBuffer) return;
+	        fullText += contentBuffer;
+	        contentBuffer = '';
 	        updateMsg(msgID, {
 	          type: 'text',
 	          content: {
@@ -69374,6 +69376,7 @@
 	          done
 	        } = await reader.read();
 	        if (done) {
+	          flushBuffer();
 	          setCanSend(true);
 	          setUserMessageList(prev => [...prev, {
 	            role: 'assistant',
@@ -69384,28 +69387,32 @@
 	          }]);
 	          break;
 	        }
-	        ;
-	        const chunk = decoder.decode(value, {
+	        textBuffer += decoder.decode(value, {
 	          stream: true
 	        });
-	        const lines = chunk.split('\n').filter(line => line.trim().startsWith('data:'));
+
+	        // 只处理完整的行，流式数据可能被折行
+	        const lines = textBuffer.split('\n');
+	        textBuffer = lines.pop();
 	        for (const line of lines) {
-	          const str = line.replace(/^data:\s*/, '');
-	          if (str === '[DONE]') continue;
+	          if (!line.trim().startsWith('data:')) continue;
+	          const jsonStr = line.replace(/^data:\s*/, '');
+	          if (jsonStr === '[DONE]') continue;
 	          try {
-	            if (str) {
-	              buffer += str;
-	              if (buffer.length > 2) {
+	            const data = JSON.parse(jsonStr);
+	            const delta = data?.content || '';
+	            if (delta) {
+	              contentBuffer += delta;
+	              if (contentBuffer.length > 2) {
 	                flushBuffer();
 	              }
 	            }
 	          } catch (err) {
-	            console.warn('解析失败:', err, jsonStr);
+	            console.warn('JSON 解析失败:', err, jsonStr);
 	          }
 	        }
 	        await new Promise(r => setTimeout(r, 30));
 	      }
-	      flushBuffer();
 	    } catch (err) {
 	      console.error('Streaming API error:', err);
 	      updateMsg(msgID, {
@@ -69596,8 +69603,7 @@
 	    const text = msg.content?.text || '';
 	    const {
 	      thinkContent,
-	      restContent,
-	      inThink
+	      restContent
 	    } = parseThinkContent(text);
 	    return /*#__PURE__*/React.createElement(distExports.Bubble, null, msg?.position === 'left' && text.indexOf('<think>') !== -1 && /*#__PURE__*/React.createElement(distExports.Think, null, thinkContent), /*#__PURE__*/React.createElement("div", {
 	      dangerouslySetInnerHTML: {
