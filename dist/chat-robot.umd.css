@@ -105,7 +105,7 @@ Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
 }
 
 .MessageList .Message.left .Bubble.text {
-  padding: 10px 10px 10px 25px;
+  padding: 10px 25px 10px 25px;
 }
 
 a {

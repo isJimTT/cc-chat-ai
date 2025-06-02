@@ -69381,6 +69381,27 @@
 	            avatar: robotIcon
 	          }
 	        });
+	        setUserMessageList(prev => {
+	          const last = prev[prev.length - 1];
+	          if (last && last.role === 'assistant') {
+	            const updated = [...prev];
+	            updated[updated.length - 1] = {
+	              ...last,
+	              content: {
+	                text: fullText
+	              }
+	            };
+	            return updated;
+	          } else {
+	            return [...prev, {
+	              role: 'assistant',
+	              type: 'text',
+	              content: {
+	                text: fullText
+	              }
+	            }];
+	          }
+	        });
 	      };
 	      while (true) {
 	        const {
