@@ -81,54 +81,51 @@ Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
   height: 100%;
 }
 
-.ChatApp .Navbar,
-.Navbar-main {
+.chat-wrap .ChatApp .Navbar,
+.chat-wrap .Navbar-main {
   background: #fff;
   height: 50px;
   overflow: hidden;
 }
 
-.Navbar-logo {
+.chat-wrap .Navbar-logo {
   height: 30px;
 }
 
-.Composer-input {
+.chat-wrap .Composer-input {
   height: 45px;
 }
 
-.CardMedia {
+.chat-wrap .CardMedia {
   background-size: 58%;
 }
 
-.Message.right .Bubble {
+.chat-wrap .Message.right .Bubble {
   white-space: unset;
 }
 
-.MessageList .Message.left .Bubble.text {
+.chat-wrap .MessageList .Message.left .Bubble.text {
   padding: 10px 25px 10px 25px;
 }
 
-a {
+.chat-wrap a {
   color: #3b85c2 !important;
 }
 
-.card-img-wrap {
+.chat-wrap .card-img-wrap {
   width: 60px;
   height: 60px;
   border-radius: 8px;
-  object-fit: 'cover';
+  object-fit: cover; /* 注意这里不需要引号 */
   margin: 12px;
 }
 
-/* 处理第一条机器人消息 */
-.MessageList .Message.left:nth-child(2) .Bubble.text {
+.chat-wrap .MessageList .Message.left:nth-child(2) .Bubble.text {
   white-space: unset;
 }
 
-
-
 /* 代码高亮样式 */
-.hljs {
+.chat-wrap .hljs {
   white-space: pre;
   overflow-x: auto;
   word-break: normal;
@@ -139,7 +136,6 @@ a {
   max-width: 100%;
   box-sizing: border-box;
 }
-
 
 /* 覆盖chat-ui样式导致屏幕无法滚动：https://github.com/alibaba/ChatUI/issues/168*/
 #root,
@@ -152,7 +148,7 @@ body {
   overflow: initial;
 }
 
-.chat-dropdown-menu {
+.chat-wrap .chat-dropdown-menu {
   position: absolute;
   top: 40px;
   right: 20px;
@@ -166,7 +162,7 @@ body {
   border: 1px solid #eee;
 }
 
-.chat-dropdown-menu .menu-item {
+.chat-wrap .chat-dropdown-menu .menu-item {
   padding: 10px 16px;
   font-size: 14px;
   color: #333;
@@ -174,11 +170,11 @@ body {
   transition: background 0.2s ease;
 }
 
-.chat-dropdown-menu .menu-item:hover {
+.chat-wrap .chat-dropdown-menu .menu-item:hover {
   background-color: #f5f5f5;
 }
 
-.chat-dropdown-menu .menu-item.disabled {
+.chat-wrap .chat-dropdown-menu .menu-item.disabled {
   color: #bbb;
   cursor: not-allowed;
 }
@@ -194,16 +190,16 @@ body {
   }
 }
 
-.expanding {
+.chat-wrap .expanding {
   display: inline-block;
   transition: transform 0.2s linear;
 }
 
-.expanding.rotate {
+.chat-wrap .expanding.rotate {
   animation: spin 0.2s linear forwards;
 }
 
-.expanding.rotate-back {
+.chat-wrap .expanding.rotate-back {
   animation: spin-back 0.2s linear forwards;
 }
 
