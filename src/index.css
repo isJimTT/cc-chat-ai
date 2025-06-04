@@ -1,0 +1,183 @@
+.chat-wrap {
+  height: 100%;
+}
+
+.chat-wrap img {
+  width: 100%;
+}
+
+.chat-wrap .ChatApp .Navbar,
+.chat-wrap .Navbar-main {
+  background: #fff;
+  height: 50px;
+  overflow: hidden;
+  margin-left: 0;
+}
+
+.chat-wrap .Navbar-left {
+  width: 0;
+}
+
+.chat-wrap .Navbar-logo {
+  height: 30px;
+}
+
+.chat-wrap .Composer-input {
+  height: 45px;
+}
+
+.chat-wrap .Composer-actions {
+  height: 45px;
+}
+
+
+.chat-wrap .Composer-sendBtn {
+  height: 45px;
+}
+
+.chat-wrap .CardMedia {
+  background-size: 58%;
+}
+
+.chat-wrap .Message.right .Bubble {
+  white-space: unset;
+}
+
+.chat-wrap .MessageList .Message.left .Bubble.text {
+  padding: 10px 25px 10px 25px;
+}
+
+.chat-wrap a {
+  color: #3b85c2 !important;
+}
+
+.chat-wrap .card-img-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover; /* 注意这里不需要引号 */
+  margin: 12px;
+}
+
+.chat-wrap .MessageList .Message.left:nth-child(2) .Bubble.text {
+  white-space: unset;
+}
+
+/* 代码高亮样式 */
+.chat-wrap .hljs {
+  white-space: pre;
+  overflow-x: auto;
+  word-break: normal;
+  word-wrap: normal;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #f7f7f7;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 覆盖chat-ui样式导致屏幕无法滚动：https://github.com/alibaba/ChatUI/issues/168*/
+#root,
+body,
+html {
+  height: auto;
+}
+
+body {
+  overflow: initial;
+}
+
+.chat-wrap .chat-dropdown-menu {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 140px;
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.chat-wrap .chat-dropdown-menu .menu-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.chat-wrap .chat-dropdown-menu .menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.chat-wrap .chat-dropdown-menu .menu-item.disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-wrap .expanding {
+  display: inline-block;
+  transition: transform 0.2s linear;
+}
+
+.chat-wrap .expanding.rotate {
+  animation: spin 0.2s linear forwards;
+}
+
+.chat-wrap .expanding.rotate-back {
+  animation: spin-back 0.2s linear forwards;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes spin-back {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.chat-wrap .parse-content ol,
+.chat-wrap .parse-content ul,
+.chat-wrap .parse-content li {
+  white-space: normal;
+  margin: 6px 12px;
+}
+
+.chat-wrap .parse-content table {
+  border-collapse:collapse;
+}
+
+.chat-wrap .parse-content table tr {
+  text-align: left;
+  border-bottom: 2px solid #dadde1;
+}
+
+.chat-wrap .parse-content table tr td,
+.chat-wrap .parse-content table tr th {
+  border: 1px solid #dadde1;
+  padding: 0.6rem 0.75rem;
+}

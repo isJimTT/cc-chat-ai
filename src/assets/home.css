@@ -1,0 +1,331 @@
+.home-header {
+    width: 100%;
+    height: 100px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    padding: 0 100px;
+}
+
+.home-header-container {
+    /*width: 1506px;*/
+    margin: 0 auto;
+    line-height: 100px;
+    vertical-align: middle
+}
+
+.home-header-menu {
+    display: inline-block;
+    margin-left: 93px;
+}
+
+.home-header-menu-item {
+    display: inline-block;
+    width: 112px
+}
+
+.home-header-menu-item a {
+    color: #51459E;
+    font-size: 14px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+}
+
+.home-header-menu-item-active a {
+    border-bottom: 4px solid #FF7C00;
+    color: #FF7C00;
+    padding-bottom: 10px;
+}
+
+.home-header-action {
+    float: right;
+}
+
+.home-header-action a {
+    color: #51459E;
+    font-size: 14px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    margin-right: 34px
+}
+
+.home-header-action button {
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    background: #FF7C00;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 0 14px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.go-button {
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    vertical-align: middle;
+    background: #FF7C00;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 52px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.home-footer {
+    min-width: 1506px;
+    height: 688px;
+    background-color: #33296E
+}
+
+.home-footer-container {
+    width: 1506px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    color: #ffffff;
+}
+
+.home-footer-title {
+    height: 280px;
+    line-height: 280px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 20px;
+    background-image: url('home3.svg');
+    background-size: 878px 281px;
+    background-position: right;
+    background-repeat: no-repeat;
+    font-size: 36px
+}
+
+.home-footer-content {
+    height: 266px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 62px 20px
+}
+
+.home-footer-logo {
+    width: 193px;
+    height: 64px;
+    display: inline-block
+}
+
+.home-footer-contact {
+    margin-left: 262px;
+    display: inline-block;
+    vertical-align: top
+}
+
+.home-footer-contact-title {
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 14px
+}
+
+.join-us-item {
+    width: 400px;
+    height: 80px;
+    line-height: 80px;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+    padding: 0 30px;
+    display: inline-block;
+    margin-right: 148px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.advantage-title {
+    color: #333333;
+    margin-top: 20px;
+    text-align: center;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.advantage-item {
+    width: 220px;
+    display: inline-block;
+    margin-right: 190px;
+    vertical-align: top;
+}
+
+.go-product-link {
+    width: 160px;
+    height: 56px;
+    display: inline-block;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.13);
+    line-height: 56px;
+    text-align: center;
+    font-size: 20px;
+    margin-right: 16px;
+    color: #333333
+}
+
+.go-product-link:hover {
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.29);
+    color: #51459E;
+}
+
+.solution-item {
+    cursor: pointer;
+    width: 320px;
+    height: 320px;
+    background-color: #ffffff;
+    border-radius: 36px;
+    padding: 40px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 70px;
+}
+
+.solution-item:hover {
+    background-color: #51459E;
+    color: #ffffff;
+}
+
+.solution-item:hover .solution-item-title, .solution-item:hover .solution-item-content, .solution-item:hover .solution-item-a {
+    color: #ffffff;
+}
+
+.solution-item-title {
+    color: #51459E;
+    font-size: 20px;
+    padding-top: 25px;
+}
+
+.solution-item-content {
+    color: #555555;
+    font-size: 16px;
+    margin-top: 10px
+}
+
+.solution-item-a {
+    color: #51459E;
+    font-size: 16px;
+    margin-top: 10px
+}
+
+.switch-point-choose {
+    display: inline-block;
+    background-color: #51459E;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.switch-point {
+    display: inline-block;
+    border: 1px solid #51459E;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 20px
+}
+
+[v-cloak] {
+    display: none;
+}
+
+#app {
+    /*min-width: 1600px;*/
+}
+
+
+.timer {
+    position: absolute;
+    bottom: -100px;
+}
+
+.imageSlider {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 700px;
+}
+
+.imageSlider .imageSlider-nav {
+    position: absolute;
+    bottom: 32px;
+    right: 50%;
+    z-index: 9;
+    transform: translateX(50%);
+}
+
+.imageSlider .imageSlider-nav .choosed {
+    background-color: #51459E;
+}
+
+.imageSlider .imageSlider-nav .next,
+.imageSlider .imageSlider-nav .prev {
+    cursor: pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 1px solid #51459E;
+}
+
+.imageSlider .imageSlider-nav .next:hover,
+.imageSlider .imageSlider-nav .prev:hover {
+    background-color: #51459E;
+
+}
+
+.imageSlider .imageSlider-nav .prev {
+}
+
+.imageSlider .imageSlider-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.imageSlider .imageSlider-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.8s ease;
+    overflow: hidden;
+    visibility: visible;
+    opacity: 1;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.banner-content {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.visible-false{
+    visibility: hidden;
+}
