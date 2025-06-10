@@ -505,6 +505,81 @@
     isHighlight: true
   }];
 
+  var CustomComposer = function CustomComposer(_ref) {
+    var onSend = _ref.onSend,
+      _ref$canSend = _ref.canSend,
+      canSend = _ref$canSend === void 0 ? false : _ref$canSend,
+      _ref$pausedRequest = _ref.pausedRequest,
+      pausedRequest = _ref$pausedRequest === void 0 ? function () {} : _ref$pausedRequest;
+    var _useState = React.useState(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      message = _useState2[0],
+      setMessage = _useState2[1];
+    var _useState3 = React.useState(!canSend),
+      _useState4 = _slicedToArray(_useState3, 2),
+      paused = _useState4[0];
+      _useState4[1];
+    var handleClick = function handleClick() {
+      if (paused) {
+        pausedRequest();
+        // setPaused(false);
+      } else {
+        if (message.trim()) {
+          onSend === null || onSend === void 0 || onSend('text', message);
+          setMessage("");
+        }
+      }
+    };
+    return /*#__PURE__*/React.createElement("div", {
+      className: "message-input-container"
+    }, /*#__PURE__*/React.createElement("textarea", {
+      type: "text",
+      rows: "2",
+      value: message,
+      onChange: function onChange(e) {
+        return setMessage(e.target.value);
+      },
+      placeholder: paused ? "回复中..." : "请输入消息...",
+      disabled: paused,
+      className: "message-input",
+      onKeyDown: function onKeyDown(e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          handleClick();
+        }
+      }
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: handleClick,
+      className: "send-button"
+    }, paused ? /*#__PURE__*/React.createElement("svg", {
+      t: "1749536638247",
+      "class": "icon",
+      viewBox: "0 0 1024 1024",
+      version: "1.1",
+      xmlns: "http://www.w3.org/2000/svg",
+      "p-id": "18418",
+      width: "15",
+      height: "15"
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M841.955556 56.888889H182.044444C113.777778 56.888889 56.888889 113.777778 56.888889 182.044444v659.911112C56.888889 910.222222 113.777778 967.111111 182.044444 967.111111h659.911112c68.266667 0 125.155556-56.888889 125.155555-125.155555V182.044444C967.111111 113.777778 910.222222 56.888889 841.955556 56.888889z",
+      fill: "#ffffff",
+      "p-id": "18419"
+    })) : /*#__PURE__*/React.createElement("svg", {
+      t: "1749536193030",
+      "class": "icon",
+      viewBox: "0 0 1024 1024",
+      version: "1.1",
+      xmlns: "http://www.w3.org/2000/svg",
+      "p-id": "6066",
+      width: "25",
+      height: "25"
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M468.010667 852.821333V279.04c0-0.085333-0.213333-0.170667-0.213334-0.085333L259.84 495.402667a43.946667 43.946667 0 1 1-63.402667-61.013334l283.221334-294.698666a44.032 44.032 0 0 1 63.402666 0l284.672 296.32a43.818667 43.818667 0 0 1-1.194666 62.208 44.032 44.032 0 0 1-62.208-1.237334l-208-216.362666c-0.085333-0.128-0.170667 0-0.170667 0.085333V853.76c0 23.381333-18.346667 42.496-41.301333 43.904a44.672 44.672 0 0 1-46.805334-44.885333z",
+      fill: "#ffffff",
+      "p-id": "6067"
+    }))));
+  };
+
   var FlowConnection = function FlowConnection(_ref) {
     var form = _ref.form,
       to = _ref.to,
@@ -69725,7 +69800,9 @@
     }
   }
   var ChatRobot = function ChatRobot(_ref) {
-    var _ref$onClose = _ref.onClose,
+    var _ref$showRobot = _ref.showRobot,
+      showRobot = _ref$showRobot === void 0 ? false : _ref$showRobot,
+      _ref$onClose = _ref.onClose,
       onClose = _ref$onClose === void 0 ? null : _ref$onClose,
       _ref$onExpand = _ref.onExpand,
       onExpand = _ref$onExpand === void 0 ? null : _ref$onExpand,
@@ -69777,7 +69854,9 @@
       sessionId = _useState14[0],
       setSessionId = _useState14[1];
     var inputRef = React.useRef(null);
+    var fetchControllerRef = React.useRef(new AbortController());
     function navRightClick() {
+      fetchControllerRef.current.abort();
       setMenuVisible(false);
       onClose();
     }
@@ -69854,17 +69933,20 @@
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var _options$timeout = options.timeout,
         timeout = _options$timeout === void 0 ? 30000 : _options$timeout;
-      var controller = new AbortController();
+      fetchControllerRef.current = new AbortController();
       var timer = setTimeout(function () {
-        return controller.abort();
+        return fetchControllerRef.current.abort();
       }, timeout);
       return fetch(resource, _objectSpread2(_objectSpread2({}, options), {}, {
-        signal: controller.signal
+        signal: fetchControllerRef.current.signal
       })).then(function (response) {
         clearTimeout(timer);
         return response;
       })["catch"](function (error) {
         clearTimeout(timer);
+        if (error.name === 'AbortError') {
+          throw new Error('⚠️ 请求中断');
+        }
         throw error;
       });
     };
@@ -69969,7 +70051,7 @@
               fullText = fullText.trim();
               fullText = fullText.replace(':::', '');
               fullText = fullText.replace(':::info', '');
-              return _context.abrupt("break", 65);
+              return _context.abrupt("break", 76);
             case 37:
               textBuffer += decoder.decode(value, {
                 stream: true
@@ -69983,7 +70065,7 @@
               _iterator.s();
             case 43:
               if ((_step = _iterator.n()).done) {
-                _context.next = 53;
+                _context.next = 64;
                 break;
               }
               line = _step.value;
@@ -69991,56 +70073,67 @@
                 _context.next = 47;
                 break;
               }
-              return _context.abrupt("continue", 51);
+              return _context.abrupt("continue", 62);
             case 47:
               jsonStr = line.replace(/^data:\s*/, '');
               if (!(jsonStr === '[DONE]')) {
                 _context.next = 50;
                 break;
               }
-              return _context.abrupt("continue", 51);
+              return _context.abrupt("continue", 62);
             case 50:
-              try {
-                data = JSON.parse(jsonStr);
-                delta = (data === null || data === void 0 ? void 0 : data.content) || '';
-                if (delta) {
-                  contentBuffer += delta;
-                  if (contentBuffer.length > 2) {
-                    flushBuffer();
-                  }
-                }
-              } catch (err) {
-                console.warn('JSON 解析失败:', err, jsonStr);
+              _context.prev = 50;
+              data = JSON.parse(jsonStr);
+              if (!(data !== null && data !== void 0 && data.error && data.error.includes('RuntimeException'))) {
+                _context.next = 54;
+                break;
               }
-            case 51:
-              _context.next = 43;
+              throw new Error('请求繁忙，请稍后重试');
+            case 54:
+              delta = (data === null || data === void 0 ? void 0 : data.content) || '';
+              if (delta) {
+                contentBuffer += delta;
+                if (contentBuffer.length > 2) {
+                  flushBuffer();
+                }
+              }
+              _context.next = 62;
               break;
-            case 53:
-              _context.next = 58;
-              break;
-            case 55:
-              _context.prev = 55;
-              _context.t1 = _context["catch"](41);
-              _iterator.e(_context.t1);
             case 58:
               _context.prev = 58;
+              _context.t1 = _context["catch"](50);
+              console.warn('JSON 解析失败或服务器返回异常:', _context.t1, jsonStr);
+              throw _context.t1;
+            case 62:
+              _context.next = 43;
+              break;
+            case 64:
+              _context.next = 69;
+              break;
+            case 66:
+              _context.prev = 66;
+              _context.t2 = _context["catch"](41);
+              _iterator.e(_context.t2);
+            case 69:
+              _context.prev = 69;
               _iterator.f();
-              return _context.finish(58);
-            case 61:
-              _context.next = 63;
+              return _context.finish(69);
+            case 72:
+              _context.next = 74;
               return new Promise(function (r) {
                 return setTimeout(r, 30);
               });
-            case 63:
+            case 74:
               _context.next = 24;
               break;
-            case 65:
-              _context.next = 72;
+            case 76:
+              _context.next = 84;
               break;
-            case 67:
-              _context.prev = 67;
-              _context.t2 = _context["catch"](3);
-              errorText = fullText ? fullText + '\n\n[⚠️ 网络中断，消息可能不完整]' : (_context.t2 === null || _context.t2 === void 0 ? void 0 : _context.t2.message) || '网络错误';
+            case 78:
+              _context.prev = 78;
+              _context.t3 = _context["catch"](3);
+              if ((_context.t3 === null || _context.t3 === void 0 ? void 0 : _context.t3.message) === 'Failed to fetch') _context.t3.message = '⚠️ 请求中断';
+              errorText = fullText ? fullText + '\n\n[⚠️ 请求中断，消息可能不完整]' : (_context.t3 === null || _context.t3 === void 0 ? void 0 : _context.t3.message) || '网络错误';
               updateMsg(msgID, {
                 type: 'text',
                 content: {
@@ -70070,16 +70163,16 @@
                   }]);
                 }
               });
-            case 72:
-              _context.prev = 72;
+            case 84:
+              _context.prev = 84;
               setIsTyping(false);
               setCanSend(true);
-              return _context.finish(72);
-            case 76:
+              return _context.finish(84);
+            case 88:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[3, 67, 72, 76], [10, 17], [41, 55, 58, 61]]);
+        }, _callee, null, [[3, 78, 84, 88], [10, 17], [41, 66, 69, 72], [50, 58]]);
       }));
       return _getRepeatMessage.apply(this, arguments);
     }
@@ -70208,6 +70301,9 @@
         scrollToEnd('smooth');
       }, 1000);
     }
+    function handlePaused() {
+      fetchControllerRef.current.abort();
+    }
     function renderMessageContent(msg) {
       var _msg$content2, _msg$content3;
       var lastMsg = messages[messages.length - 1];
@@ -70319,6 +70415,18 @@
       };
     }, []);
 
+    // 监听机器人显示/隐藏
+    React.useEffect(function () {
+      // 初始化滚到底部
+      scrollToEnd();
+
+      // 手机端默认全屏
+      if (isMobileDevice()) {
+        setIsExpand(true); // 默认全屏
+        onExpand();
+      }
+    }, [showRobot]);
+
     // 监听 userMessageList 变化 -> 存储到 localStorage
     React.useEffect(function () {
       if (sessionId) {
@@ -70353,10 +70461,16 @@
       quickReplies: DEFAULT_QUICK_REPLAY,
       onQuickReplyClick: handleQuickReplyClick,
       onSend: handleSend,
-      composerRef: inputRef
+      composerRef: inputRef,
+      Composer: function Composer(props) {
+        return /*#__PURE__*/React.createElement(CustomComposer, _extends({}, props, {
+          canSend: canSend,
+          pausedRequest: handlePaused
+        }));
+      }
     }), menuVisible && /*#__PURE__*/React.createElement("div", {
       className: "chat-dropdown-menu"
-    }, /*#__PURE__*/React.createElement("div", {
+    }, !isMobileDevice() && /*#__PURE__*/React.createElement("div", {
       className: onExpand ? "menu-item" : 'menu-item disabled',
       onClick: function onClick() {
         setMenuVisible(false);

@@ -1,3 +1,82 @@
+.message-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  border-radius: 0 0 16px 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.toolbar-button {
+  background: none;
+  border: none;
+  margin-right: 8px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.toolbar-button:hover {
+  color: #000;
+}
+
+.message-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.message-input:focus {
+  border-color: #ff6200;
+}
+
+.message-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #aaa;
+}
+
+.send-button {
+  width:  35px;
+  height: 35px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: #ff6200;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send-button:hover {
+  background-color: #ee8332;
+}
+
+.send-button.paused {
+  background-color: #999;
+}
+
+.send-button.paused:hover {
+  background-color: #777;
+}
+
+.chat-icon {
+  width: 25px;
+  height: 25px;
+}
 pre code.hljs {
   display: block;
   overflow-x: auto;
@@ -92,11 +171,11 @@ Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
   height: 50px;
   overflow: hidden;
   margin-left: 0;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .chat-wrap .Navbar-left {
-  /* width: 26px; */
+  width: 26px;
 }
 
 .chat-wrap .Navbar-logo {
@@ -135,7 +214,7 @@ Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
 }
 
 .chat-wrap .MessageList .Message.left .Bubble.text img {
-  width: 10vw
+  max-width: 10vw
 }
 
 .chat-wrap a {
@@ -146,7 +225,7 @@ Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
   width: 60px;
   height: 60px;
   border-radius: 8px;
-  object-fit: cover; /* 注意这里不需要引号 */
+  object-fit: cover;
   margin: 12px;
 }
 
